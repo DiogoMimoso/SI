@@ -44,7 +44,7 @@ class PonteVelha(Problem):
              (True, False, True, True, True)
         return tuple(s)     
     def path_cost(self, c, state1,action,next_state):
-        pass
+        "custo vai ser sempre igual ao tempo que demora o mais lento a atravessar a ponte"
     
     def executa(self,state,actions):
         """Executa a sequência de acções (em actions) e devolve o último estado"""
