@@ -15,7 +15,7 @@ class PonteVelha(Problem):
                 'atravessa 1 + 2 + 5 ',  'atravessa 1 + 2 + 10', 'atravessa 1 + 5 + 10','atravessa 2 + 5 + 10' ]
         
         
-    def result(self, state, action):
+   def result(self, state, action):
         """Return the state that results from executing the given 
         action in the given state. The action must be one of
         self.actions(state)."""
@@ -23,26 +23,26 @@ class PonteVelha(Problem):
         s = list(state)
         
         if s[action] == 'atravessa 1 + 2':
-            return (True, True, True, False, False)
+            (True, True, True, False, False)
         if s[action] == 'atravessa 1 + 5':
-            return (True, True, False, True, False)
+             (True, True, False, True, False)
         if s[action] == 'atravessa 1 + 10':
-            return (True, True, False, False, True)
+             (True, True, False, False, True)
         if s[action] == 'atravessa 2 + 5':
-            return (True, False, True, True, False)
+             (True, False, True, True, False)
         if s[action] == 'atravessa 2 + 10':
-            return (True, False, True, False, True)
+             (True, False, True, False, True)
         if s[action] == 'atravessa 5 + 10':
-            return (True, False, False, True, True)
+             (True, False, False, True, True)
         if s[action] == 'atravessa 1 + 2 + 5':
-            return (True, False, True, True, False)
+             (True, False, True, True, False)
         if s[action] == 'atravessa 1 + 2 + 10':
-            return (True, True, True, False, True)
+             (True, True, True, False, True)
         if s[action] == 'atravessa 1 + 5 + 10':
-            return (True, True, False, True, True)
+             (True, True, False, True, True)
         if s[action] == 'atravessa 2 + 5 + 10':
-            return (True, False, True, True, True)
-    
+             (True, False, True, True, True)
+        return tuple(s)     
     def path_cost(self, c, state1,action,next_state):
         pass
     
