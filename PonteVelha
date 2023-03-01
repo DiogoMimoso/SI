@@ -1,1 +1,57 @@
+from searchPlus import *
 
+class PonteVelha(Problem):
+    travessia = {'atravessa 1 + 2' : (True, True, True, False, False), 
+                 'atravessa 1 + 5' : (True, True, False, True, False),
+                 'atravessa 1 + 10' : (True, True, False, False, True),
+                 'atravessa 2 + 5' : (True, False, True, True, False),
+                 'atravessa 2 + 10' : (True, False, True, False, True),
+                 'atravessa 5 + 10': (True, False, False, True, True),
+                 'atravessa 1 + 2 + 5 ': (True, False, True, True, False),
+                 'atravessa 1 + 2 + 10': (True, True, True, False, True),
+                 'atravessa 1 + 5 + 10': (True, True, False, True, True),
+                 'atravessa 2 + 5 + 10' :(True, False, True, True, True) }
+
+    
+    def __init__(self, capacidade=2,viajantes={1,2,5,10}):
+        self.capacidade = capacidade
+        self.viajantes = viajantes
+        self.initial = (False, False, False, False, False)
+        self.goal = (True, True, True, True, True)
+   
+    def actions(self, state):
+       
+        
+        return ['atravessa 1 + 2','atravessa 1 + 5', 'atravessa 1 + 10', 'atravessa 2 + 5', 'atravessa 2 + 10', 'atravessa 5 + 10', 
+                'atravessa 1 + 2 + 5 ',  'atravessa 1 + 2 + 10', 'atravessa 1 + 5 + 10','atravessa 2 + 5 + 10' ]
+        
+        
+        
+        
+    def result(self, state, action):
+        """Return the state that results from executing the given 
+        action in the given state. The action must be one of
+        self.actions(state)."""
+
+        s = list(state)
+        
+        if state == 'atravessa 1 + 2':
+            return (True, True, True, False, False)
+        if state == (True, True, True, False, False):
+            return (False, False, True, False, False)
+        if state == (False, False, True, False, False):
+            return (True, True, True, True, False)
+        if state == (True, True, True, True, False):
+            return (False, False, True, True, False)
+        if state == (False, False, True, True, False):
+            return (self.goal)
+    
+    def path_cost(self, c, state1,action,next_state):
+        pass
+    
+    def executa(self,state,actions):
+        """Executa a sequência de acções (em actions) e devolve o último estado"""
+        nstate=state
+        for a in actions:
+            nstate=p.result(nstate,a)
+        return nstate
