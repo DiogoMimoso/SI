@@ -1,18 +1,7 @@
 from searchPlus import *
 
 class PonteVelha(Problem):
-    travessia = {'atravessa 1 + 2' : (True, True, True, False, False), 
-                 'atravessa 1 + 5' : (True, True, False, True, False),
-                 'atravessa 1 + 10' : (True, True, False, False, True),
-                 'atravessa 2 + 5' : (True, False, True, True, False),
-                 'atravessa 2 + 10' : (True, False, True, False, True),
-                 'atravessa 5 + 10': (True, False, False, True, True),
-                 'atravessa 1 + 2 + 5 ': (True, False, True, True, False),
-                 'atravessa 1 + 2 + 10': (True, True, True, False, True),
-                 'atravessa 1 + 5 + 10': (True, True, False, True, True),
-                 'atravessa 2 + 5 + 10' :(True, False, True, True, True) }
-
-    
+   
     def __init__(self, capacidade=2,viajantes={1,2,5,10}):
         self.capacidade = capacidade
         self.viajantes = viajantes
@@ -26,8 +15,6 @@ class PonteVelha(Problem):
                 'atravessa 1 + 2 + 5 ',  'atravessa 1 + 2 + 10', 'atravessa 1 + 5 + 10','atravessa 2 + 5 + 10' ]
         
         
-        
-        
     def result(self, state, action):
         """Return the state that results from executing the given 
         action in the given state. The action must be one of
@@ -35,16 +22,26 @@ class PonteVelha(Problem):
 
         s = list(state)
         
-        if state == 'atravessa 1 + 2':
+        if s[action] == 'atravessa 1 + 2':
             return (True, True, True, False, False)
-        if state == (True, True, True, False, False):
-            return (False, False, True, False, False)
-        if state == (False, False, True, False, False):
-            return (True, True, True, True, False)
-        if state == (True, True, True, True, False):
-            return (False, False, True, True, False)
-        if state == (False, False, True, True, False):
-            return (self.goal)
+        if s[action] == 'atravessa 1 + 5':
+            return (True, True, False, True, False)
+        if s[action] == 'atravessa 1 + 10':
+            return (True, True, False, False, True)
+        if s[action] == 'atravessa 2 + 5':
+            return (True, False, True, True, False)
+        if s[action] == 'atravessa 2 + 10':
+            return (True, False, True, False, True)
+        if s[action] == 'atravessa 5 + 10':
+            return (True, False, False, True, True)
+        if s[action] == 'atravessa 1 + 2 + 5':
+            return (True, False, True, True, False)
+        if s[action] == 'atravessa 1 + 2 + 10':
+            return (True, True, True, False, True)
+        if s[action] == 'atravessa 1 + 5 + 10':
+            return (True, True, False, True, True)
+        if s[action] == 'atravessa 2 + 5 + 10':
+            return (True, False, True, True, True)
     
     def path_cost(self, c, state1,action,next_state):
         pass
