@@ -1,53 +1,67 @@
 from searchPlus import *
 
 class PonteVelha(Problem):
+
+     directions = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+     
+     caminhoAssoc = {'atravessa 1 + 2': 1, 'atravessa 1 + 5': 2, 'atravessa 1 + 10': 3, 'atravessa 2 + 5': 4, 'atravessa 2 + 10': 5, 'atravessa 5 + 10': 6, 'atravessa 1 + 2 + 5 ': 7, 'atravessa 1 + 2 + 10': 8, 'atravessa 1 + 5 + 10': 9,'atravessa 2 + 5 + 10' : 10 }
    
-    def __init__(self, capacidade=2,viajantes={1,2,5,10}):
+def __init__(self, capacidade=2,viajantes={1,2,5,10}):
         self.capacidade = capacidade
         self.viajantes = viajantes
         self.initial = (False, False, False, False, False)
         self.goal = (True, True, True, True, True)
    
-    def actions(self, state):
+def actions(self, state):
        
         
         return ['atravessa 1 + 2','atravessa 1 + 5', 'atravessa 1 + 10', 'atravessa 2 + 5', 'atravessa 2 + 10', 'atravessa 5 + 10', 
-                'atravessa 1 + 2 + 5 ',  'atravessa 1 + 2 + 10', 'atravessa 1 + 5 + 10','atravessa 2 + 5 + 10' ]
+                'atravessa 1 + 2 + 5 ',  'atravessa 1 + 2 + 10', 'atravessa 1 + 5 + 10','atravessa 2 + 5 + 10' ]  
         
         
-   def result(self, state, action):
+def result(self, state, action): 
         """Return the state that results from executing the given 
         action in the given state. The action must be one of
         self.actions(state)."""
 
         s = list(state)
+        idx = self.caminhoAssoc[action]
         
-        if s[action] == 'atravessa 1 + 2':
-            (True, True, True, False, False)
-        if s[action] == 'atravessa 1 + 5':
-             (True, True, False, True, False)
-        if s[action] == 'atravessa 1 + 10':
-             (True, True, False, False, True)
-        if s[action] == 'atravessa 2 + 5':
-             (True, False, True, True, False)
-        if s[action] == 'atravessa 2 + 10':
-             (True, False, True, False, True)
-        if s[action] == 'atravessa 5 + 10':
-             (True, False, False, True, True)
-        if s[action] == 'atravessa 1 + 2 + 5':
-             (True, False, True, True, False)
-        if s[action] == 'atravessa 1 + 2 + 10':
-             (True, True, True, False, True)
-        if s[action] == 'atravessa 1 + 5 + 10':
-             (True, True, False, True, True)
-        if s[action] == 'atravessa 2 + 5 + 10':
-             (True, False, True, True, True)
+        if s[idx] == 'atravessa 1 + 2':
+            s[idx]  = (True, True, True, False, False)
+        if s[idx]  == 'atravessa 1 + 5':
+            s[idx]  =(True, True, False, True, False)
+        if s[idx]  == 'atravessa 1 + 10':
+            s[idx]  =(True, True, False, False, True)
+        if s[idx]  == 'atravessa 2 + 5':
+            s[idx]  =(True, False, True, True, False)
+        if s[idx]  == 'atravessa 2 + 10':
+            s[idx]  =(True, False, True, False, True)
+        if s[idx]  == 'atravessa 5 + 10':
+            s[idx]  =(True, False, False, True, True)
+        if s[idx]  == 'atravessa 1 + 2 + 5':
+            s[idx]  =(True, True, True, True, False)
+        if s[idx]  == 'atravessa 1 + 2 + 10':
+            s[idx]  =(True, True, True, False, True)
+        if s[idx]  == 'atravessa 1 + 5 + 10':
+            s[idx]  =(True, True, False, True, True)
+        if s[idx]  == 'atravessa 2 + 5 + 10':
+            s[idx]  =(True, False, True, True, True)
         return tuple(s)     
-    def path_cost(self, c, state1,action,next_state):
-        "custo vai ser sempre igual ao tempo que demora o mais lento a atravessar a ponte"
     
-    def executa(self,state,actions):
+def path_cost(self, c, state1,action,next_state):
+       "custo vai ser sempre igual ao tempo que demora o mais lento a atravessar a ponte"
+       " if action [0] == 'Enche': 
+            
+       "estadoJarro = self.capacidades(action[1]- state1(action[1]))"
+       "c = c + action[1]"
+
+       
+        
+    
+def executa(self,state,actions):
         """Executa a sequência de acções (em actions) e devolve o último estado"""
+        
         nstate=state
         for a in actions:
             nstate=p.result(nstate,a)
