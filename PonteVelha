@@ -1,73 +1,55 @@
 from searchPlus import *
+from itertools import combinations
 
 class PonteVelha(Problem):
 
-     
+    
     def __init__(self, capacidade=2,viajantes={1,2,5,10}):
-        self.capacidade = capacidade
-        self.viajantes = viajantes
-        self.initial = (False, False, False, False, False)
-        self.goal = (True, True, True, True, True)
-    
-        
-        
-        
-        
+        self.capacidade= capacidade
+        self.viajantes = list(viajantes)
+        lista = []
+
+        for x in range(len(self.viajantes [:-1])):
+            lista.append(False) 
+
+        super().__init__(initial= lista(x), goal=  )
+
+
     def actions(self, state):
-        
-        for i in state:
-             if self.capacidade[i] == 2:
-                 return ['atravessa 1 + 2','atravessa 1 + 5', 'atravessa 1 + 10', 'atravessa 2 + 5', 'atravessa 2 + 10', 'atravessa 5 + 10']
-             elif self.capacidade[i] == 3:
-                 return ['atravessa 1 + 2','atravessa 1 + 5', 'atravessa 1 + 10', 'atravessa 2 + 5', 'atravessa 2 + 10', 'atravessa 5 + 10', 
-                'atravessa 1 + 2 + 5 ',  'atravessa 1 + 2 + 10', 'atravessa 1 + 5 + 10','atravessa 2 + 5 + 10' ]
-             
+
+        input = []
+       
+        combinacoes = []
+
+        transicoes = []
+
+        combinacoes = print ((list(combinations(list(self.viajantes), 2))))
+
+        for x in combinacoes:
+
+            if state[0] == False:
+
+
+
+
+
            
-       
-        
-    def result(self, state, action): 
-        """Return the state that results from executing the given 
-        action in the given state. The action must be one of
-        self.actions(state)."""
 
-        s = list(state)
-        
-        
-        if s[action] == 'atravessa 1 + 2':
-            s[action]  = (True, True, True, False, False)
-        if s[action]  == 'atravessa 1 + 5':
-            s[action]  =(True, True, False, True, False)
-        if s[action]  == 'atravessa 1 + 10':
-            s[action]  =(True, True, False, False, True)
-        if s[action]  == 'atravessa 2 + 5':
-            s[action]  =(True, False, True, True, False)
-        if s[action]  == 'atravessa 2 + 10':
-            s[action]  =(True, False, True, False, True)
-        if s[action]  == 'atravessa 5 + 10':
-            s[action]  =(True, False, False, True, True)
-        if s[action]  == 'atravessa 1 + 2 + 5':
-            s[action]  =(True, True, True, True, False)
-        if s[action]  == 'atravessa 1 + 2 + 10':
-            s[action]  =(True, True, True, False, True)
-        if s[action]  == 'atravessa 1 + 5 + 10':
-            s[action]  =(True, True, False, True, True)
-        if s[action]  == 'atravessa 2 + 5 + 10':
-            s[action]  =(True, False, True, True, True)
-        return tuple(s)     
-    
-    def path_cost(self, c, state1,action,next_state):
-       "custo vai ser sempre igual ao tempo que demora o mais lento a atravessar a ponte"
-       " if action [0] == 'Enche': 
+
+           
+           
             
-       "estadoJarro = self.capacidades(action[1]- state1(action[1]))"
-       "c = c + action[1]"
+    def result(self, state, action):
+        pass
 
-       
-        
+
+            
+    def path_cost(self, c, state1,action,next_state):
+        pass
     
     def executa(self,state,actions):
         """Executa a sequência de acções (em actions) e devolve o último estado"""
-        p = PonteVelha(self.capacidade, self.viajantes)
+        p = PonteVelha(self.capacidade, self.viajantes)  
         nstate=state
         for a in actions:
             nstate=p.result(nstate,a)
