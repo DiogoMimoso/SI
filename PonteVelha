@@ -12,40 +12,46 @@ class PonteVelha(Problem):
         for x in range(len(self.viajantes [:-1])):
             lista.append(False) 
 
-        super().__init__(initial= lista(x), goal=  )
+           
+
+        
 
 
     def actions(self, state):
 
-        input = []
+        
        
         combinacoes = []
 
-        transicoes = []
+       
 
-        combinacoes = print ((list(combinations(list(self.viajantes), 2))))
+        combinacoes = (list(combinations(list(self.viajantes), 2)))
 
         for x in combinacoes:
-
             if state[0] == False:
+                print ("[atravessa {} + {}]".format(x[0], x[1]))
+
+
+                
 
 
 
-
-
-           
-
-
-           
-           
             
+
+           
+
+
+
     def result(self, state, action):
         pass
 
 
             
     def path_cost(self, c, state1,action,next_state):
-        pass
+       
+       cc = c + max([int(n) for n in action.split()[1].split("+")])
+
+       return cc
     
     def executa(self,state,actions):
         """Executa a sequência de acções (em actions) e devolve o último estado"""
